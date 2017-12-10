@@ -2,14 +2,36 @@
 	"listings" :
 	[
 		{
-			"Name" : "Test1",
+			"Address" : "2448 WOLF RIDGE RD MOBILE, AL",
 			"Url" : "http://mobilerealtors.com/property/604691/",
-			"Description" : "Beautiful 3BR in West Mobile"
+			"Description" : "Completely fenced in 30 X 30 metal building and 900 sq feet office building.",
+			"ImageFileName" : "property1.jpeg",
+			"Price" : "79,900",
+			"Sqft" : "910ft"
 		},
 		{
-			"Name" : "Test2",
-			"Url" : "Test2urls",
-			"Description" : "Whatever here"
+			"Address" : "0 DAUPHIN ISLAND PKWY THEODORE, AL",
+			"Url" : "http://mobilerealtors.com/property/603994/",
+			"Description" : "Great place for home or business.",
+			"ImageFileName" : "property2.jpeg",
+			"Price" : "54,900",
+			"Sqft" : "0ft"
+		},
+		{
+			"Address" : "0 DAUPHIN ISLAND PKWY THEODORE, AL",
+			"Url" : "http://mobilerealtors.com/property/603998/",
+			"Description" : "Great place for home or business.",
+			"ImageFileName" : "property2.jpeg",
+			"Price" : "54,900",
+			"Sqft" : "0ft"
+		},
+		{
+			"Address" : "http://mobilerealtors.com/property/605874/",
+			"Url" : "http://mobilerealtors.com/property/605874/",
+			"Description" : "This property also has a small stream on the back of the property",
+			"ImageFileName" : "property3.jpeg",
+			"Price" : "25,000",
+			"Sqft" : "0ft"
 		}
 	]
 }

@@ -17,13 +17,14 @@
   <div id="pageintro" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <article>
-      <p>Realty done right</p>
-      <h3 class="heading">Buy And Sell With Shelli Bell</h3>
+	  <div style="background:rgba(0,0,0,0.5);">
+		  <p>The Agent That Works Harder After The Closing Papers Are Signed</p>
+		  <h3 class="heading">Shelli Bell</h3>
+	  </div>
       <footer>
         <ul class="nospace inline pushright">
           <li><a class="btn" href="ContactMe.html">Contact</a></li>
-          <!--<li><a class="btn inverse" href="http://mobilerealtors.com/agents/CLARKSHE/?sort=&afn=shelli&aln=bell&at=0">View Listings</a></li>-->
-		  <li><a class="btn inverse" href="listings.html">View Listings</a></li>
+		  <li><a class="btn inverse" href="#listingsGridSection">View Listings</a></li>
         </ul>
       </footer>
     </article>
@@ -204,46 +205,14 @@
 <div class="wrapper row3">
   <section class="hoc container clear"> 
     <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <h6 class="heading">Donec dui lacus tincidunt</h6>
-      <p>Erat orci eget sodales ipsum ultricies nec.</p>
+    <div class="sectiontitle" id="listingsGridSection">
+      <h6 class="heading">Listings</h6>
+      <p>Properties For Sale</p>
     </div>
-    <div class="group latest">
-      <article class="one_third first">
-        <figure><a class="imgover" href="#"><img src="images/demo/320x220.png" alt=""></a></figure>
-        <h4 class="heading">Vitae mauris et mattis</h4>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Admin</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Category</a></li>
-          <li><i class="fa fa-comments"></i> <a href="#">6 Comments</a></li>
-        </ul>
-        <p>Posuere erat nisi hendrerit lorem facilisis tincidunt est quam ac tortor morbi neque tortor venenatis [&hellip;]</p>
-        <footer><a href="#">Read More</a></footer>
-      </article>
-      <article class="one_third">
-        <figure><a class="imgover" href="#"><img src="images/demo/320x220.png" alt=""></a></figure>
-        <h4 class="heading">Ornare urna in sit</h4>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Admin</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Category</a></li>
-          <li><i class="fa fa-comments"></i> <a href="#">6 Comments</a></li>
-        </ul>
-        <p>Sit amet sodales in accumsan ullamcorper lorem maecenas dui magna laoreet mollis fringilla eget egestas [&hellip;]</p>
-        <footer><a href="#">Read More</a></footer>
-      </article>
-      <article class="one_third">
-        <figure><a class="imgover" href="#"><img src="images/demo/320x220.png" alt=""></a></figure>
-        <h4 class="heading">Amet eleifend enim in</h4>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Admin</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Category</a></li>
-          <li><i class="fa fa-comments"></i> <a href="#">6 Comments</a></li>
-        </ul>
-        <p>Eget dolor nullam sed porttitor lacus aliquam pulvinar rutrum maximus duis tempor risus nec tellus [&hellip;]</p>
-        <footer><a href="#">Read More</a></footer>
-      </article>
+    <div id="listings">
+		        
     </div>
-    <!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
   </section>
 </div>
 <!-- ################################################################################################ -->
@@ -323,3 +292,45 @@
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
 </body>
 </html>
+
+<script>
+$.ajax({
+  url: "listings.txt",
+  success: function(data){
+    var obj = JSON.parse(data);
+	
+	var i = 1;
+	var currentGroupNumber = 0;
+	var currentGroupId = "";
+	var first = "";
+	
+	obj.listings.forEach(function(item) {
+		if((i%4 == 0) || i == 1)
+		{
+			currentGroupNumber = currentGroupNumber + 1;
+			currentGroupId = "listing" + currentGroupNumber;
+			$("#listings").append('<div id="'+ currentGroupId + '" class="group latest"><div>');
+			first = ' first';
+		}
+		else
+		{
+			first = ' ';
+		}
+		
+		var imagePath = "images/listings/" + item.ImageFileName;
+		
+		$("#" + currentGroupId).append('<article id= "articleId' + i + '" class="one_third' + first + '"></article>');
+		
+		$("#articleId" + i).append('<a href="' + item.Url + '"><img src="' + imagePath + '"></a>');
+		$("#articleId" + i).append('<h4 class="heading">' + item.Address + '</h4>');
+		$("#articleId" + i).append('<ul id="listHolderId' + i + '" class="nospace meta"> </ul>');
+		$("#listHolderId" + i).append('<li><i class="fa fa-usd" aria-hidden="true"></i>' + item.Price + '</li>');
+		$("#listHolderId" + i).append('<li><i class="fa fa-home"></i>' + item.Sqft + '</li>');
+		$("#articleId" + i).append('<p>' + item.Description + ' [&hellip;]</p>')
+		$("#articleId" + i).append('<footer><a href="#">Read More</a></footer>');
+
+		i = i + 1;
+	});
+  }
+});
+</script>
