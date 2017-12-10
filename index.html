@@ -56,8 +56,8 @@
         <li class="active"><a href="index.html">Home</a></li>        
         <li><a href="http://mobilerealtors.com/agents/CLARKSHE/"><i class="icon-home"></i> Mobile Realtors Site</a></li>
         <li><a href="http://www.shellibell.robertsbrothers.com/agenthome">Roberts Brothers, Inc.</a></li>
-        <li><a href="https://www.facebook.com/RealtorShelliBell/"><i class="fa fa-facebook fa-3"></i></a></li>
-		<li><a href="https://twitter.com/shellibell2"><i class="fa fa-twitter fa-3"></i></a></li>
+        <li><a href="https://www.facebook.com/RealtorShelliBell/"><i class="fa fa-facebook fa-3"> facebook</i></a></li>
+		<li><a href="https://twitter.com/shellibell2"><i class="fa fa-twitter fa-3"></i></a> twitter</li>
       </ul>
       <!-- ################################################################################################ -->
     </nav>
@@ -119,9 +119,7 @@
     <ul id="reviewsList" class="nospace group services">
  	
     </ul> 
-	
-	
-    
+   </section>
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -136,16 +134,16 @@
 	<div id="comments">
 		<form id="resume_email" action="javascript:SendEmail();">
 		  <div class="one_third first">
-			<label for="name">Name <span>*</span></label>
-			<input type="text" name="name" id="name" value="" size="22" required>
+			<label for="name">Name<span>*</span></label>
+			<input style="color:black" type="text" name="name" id="name" value="" size="22" required>
 		  </div>
 		  <div class="one_third">
 			<label for="email">Mail <span>*</span></label>
-			<input type="email" name="email" id="email" value="" size="22" required>
+			<input style="color:black" type="email" name="email" id="email" value="" size="22" required>
 		  </div>
 		  <div class="block clear">
 			<label for="comment">Your Message</label>
-			<textarea name="comment" id="comment" cols="70" rows="10"></textarea>
+			<textarea style="color:black" name="comment" id="comment" cols="70" rows="10"></textarea>
 		  </div>
 		  <div>
 			<input type="submit" name="submit" value="Submit Form" style="color:black">
@@ -211,27 +209,25 @@
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row5">
-  <div id="copyright" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2017 - All Rights Reserved - <a href="#">Shelli Bell</a></p>
-    
-	
-    <!-- ################################################################################################ -->
-  </div>
+<div id="bottombar_placeholder">
+
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
 <!-- JAVASCRIPTS -->
 <script src="layout/scripts/jquery.min.js"></script>
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </body>
 </html>
 
 <script>
+
+$("#bottombar_placeholder").load("/includes/bottombar.html");
+
+$(document).ready(function() {
+    emailjs.init("user_7C858ZNPMwTkE1xJN0pJ3");
+});
+
 
 $.ajax({
   url: "listings.txt",
@@ -333,8 +329,7 @@ var pageAccessToken = 'EAAHo25kMqRYBABR4oSlxi7eNPN0PfJd7FpyiBykGLt8I81bfdq9P0wTF
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    
-function GetRatingIcons(rating)
-{
+function GetRatingIcons(rating){
 	var numberOfStars = Number(rating);
 	var returnString = "<a>Rating: ";
 	for(var i=0; i<numberOfStars; i++)
@@ -343,5 +338,18 @@ function GetRatingIcons(rating)
 	}
 	
 	return returnString + '</a>';
+}
+
+function SendEmail() {
+	
+	var name = $("#name").val();
+	var email = $("#email").val();
+	var content = $("#comment").val();
+	
+	emailjs.send("gmail", "shelli_bell_contact_email", {from_name: name, message_html: content, reply_to: email});
+}
+
+function ResetForm(){
+	$(this).closest('form').find("input[type=text], textarea").val("");
 }
 </script>
