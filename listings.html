@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<ul id="listingList">
+		</ul>
+	</body>
+</html>
+
+<script>
+$.ajax({
+  url: "listings.txt",
+  success: function(data){
+    var obj = JSON.parse(data);
+	obj.listings.forEach(function(item) {
+		alert(item.Name);
+	});
+  }
+});
+</script>
