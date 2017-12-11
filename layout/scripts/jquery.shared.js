@@ -153,7 +153,7 @@ function SendEmail() {
 	var email = $("#email").val();
 	var content = $("#comment").val();
 	
-	//emailjs.send("gmail", "shelli_bell_contact_email", {from_name: name, message_html: content, reply_to: email});
+	emailjs.send("gmail", "shelli_bell_contact_email", {from_name: name, message_html: content, reply_to: email});
 	
 	$('#emailSubmit').css('display','block');
 	
