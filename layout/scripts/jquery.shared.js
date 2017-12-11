@@ -1,11 +1,11 @@
-$("#bottombar_placeholder").load("/includes/bottombar.html");
-$("#footer_placeholder").load("/includes/footer.html");
-$("#listings_placeholder").load("/includes/listings.html");
-$("#contact_placeholder").load("/includes/contact.html");
-$("#reviews_placeholder").load("/includes/reviews.html");
-$("#about_placeholder").load("/includes/about.html");
-$("#top_splash_placeholder").load("/includes/top_splash.html");
-$("#nav_placeholder").load("/includes/nav.html");
+$("#bottombar_placeholder1").load("shellibell/includes/bottombar.html");
+$("#footer_placeholder1").load("shellibell/includes/footer.html");
+$("#listings_placeholder1").load("shellibell/includes/listings.html");
+$("#contact_placeholder1").load("shellibell/includes/contact.html");
+$("#reviews_placeholder1").load("shellibell/includes/reviews.html");
+$("#about_placeholder1").load("shellibell/includes/about.html");
+$("#top_splash_placeholder1").load("shellibell/includes/top_splash.html");
+$("#nav_placeholder1").load("shellibell/includes/nav.html");
 
 $(document).ready(function() {
     emailjs.init("user_7C858ZNPMwTkE1xJN0pJ3");
