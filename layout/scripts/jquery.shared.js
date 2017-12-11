@@ -46,12 +46,10 @@ function AddReturnedListingInfo(obj){
 		{
 			first = ' ';
 		}
-		
-		var imagePath = "images/listings/" + item.ImageFileName;
-		
+				
 		$("#" + currentGroupId).append('<article id= "articleId' + i + '" class="one_third' + first + '"></article>');
 		
-		$("#articleId" + i).append('<a href="' + item.Url + '"><img src="' + imagePath + '"></a>');
+		$("#articleId" + i).append('<a href="' + item.Url + '"><img src="' + item.ImageUrl + '"></a>');
 		$("#articleId" + i).append('<h4 class="heading">' + item.Address + '</h4>');
 		$("#articleId" + i).append('<ul id="listHolderId' + i + '" class="nospace meta"> </ul>');
 		$("#listHolderId" + i).append('<li><i class="fa fa-usd" aria-hidden="true"></i>' + item.Price + '</li>');

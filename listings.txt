@@ -5,7 +5,7 @@
 			"Address" : "2448 WOLF RIDGE RD MOBILE, AL",
 			"Url" : "http://mobilerealtors.com/property/604691/",
 			"Description" : "Completely fenced in 30 X 30 metal building and 900 sq feet office building.",
-			"ImageFileName" : "property1.jpeg",
+			"ImageUrl" : "http://matrixrets.gcmls.com/rets/GetRetsMedia.ashx?Key=5252135&TableID=9&Type=1&Number=0&Size=3&usd=-1&ust=YhcAACkJOT(JP9TpAtWlvU4bZ37mKB2uElpMQDF2IAP7WCYxnrB2xw))",
 			"Price" : "79,900",
 			"Sqft" : "910ft"
 		},
@@ -13,7 +13,7 @@
 			"Address" : "0 DAUPHIN ISLAND PKWY THEODORE, AL",
 			"Url" : "http://mobilerealtors.com/property/603994/",
 			"Description" : "Great place for home or business.",
-			"ImageFileName" : "property2.jpeg",
+			"ImageUrl" : "http://mobilerealtors.com/wp-content/themes/realtors/images/listings/no-photo.jpg",
 			"Price" : "54,900",
 			"Sqft" : "0ft"
 		},
@@ -21,7 +21,7 @@
 			"Address" : "0 DAUPHIN ISLAND PKWY THEODORE, AL",
 			"Url" : "http://mobilerealtors.com/property/603998/",
 			"Description" : "Great place for home or business.",
-			"ImageFileName" : "property2.jpeg",
+			"ImageUrl" : "http://mobilerealtors.com/wp-content/themes/realtors/images/listings/no-photo.jpg",
 			"Price" : "54,900",
 			"Sqft" : "0ft"
 		},
@@ -29,7 +29,7 @@
 			"Address" : "0 HUNTERS CITRONELLE, AL",
 			"Url" : "http://mobilerealtors.com/property/605874/",
 			"Description" : "This property also has a small stream on the back of the property",
-			"ImageFileName" : "property3.jpeg",
+			"ImageUrl" : "http://matrixrets.gcmls.com/rets/GetRetsMedia.ashx?Key=5268654&TableID=9&Type=1&Number=0&Size=3&usd=-1&ust=YhcAAOkqOT8HaThUChjc6nUmTZbCLkAp(G2lqwghJRZ(U1VWcelZyw))",
 			"Price" : "25,000",
 			"Sqft" : "0ft"
 		}
