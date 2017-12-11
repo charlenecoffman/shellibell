@@ -57,7 +57,7 @@ function AddReturnedListingInfo(obj){
 		$("#listHolderId" + i).append('<li><i class="fa fa-usd" aria-hidden="true"></i>' + item.Price + '</li>');
 		$("#listHolderId" + i).append('<li><i class="fa fa-home"></i>' + item.Sqft + '</li>');
 		$("#articleId" + i).append('<p>' + item.Description + ' [&hellip;]</p>')
-		$("#articleId" + i).append('<footer><a href="#">Read More</a></footer>');
+		$("#articleId" + i).append('<footer><a href="' + item.Url + '">Read More</a></footer>');
 
 		i = i + 1;
 	});
