@@ -6,23 +6,33 @@ $("#reviews_placeholder").load("includes_sb/reviews.html");
 $("#about_placeholder").load("includes_sb/about.html");
 $("#top_splash_placeholder").load("includes_sb/top_splash.html");
 $("#nav_placeholder").load("includes_sb/nav.html");
+$("#modal_placeholder").load("includes_sb/emailsubmit.html");
 
 $(document).ready(function() {
-    emailjs.init("user_7C858ZNPMwTkE1xJN0pJ3");
+    AddListings();
+	AddReviews();
+	InitializeEmailJS();
 });
 
+function InitializeEmailJS(){
+	emailjs.init("user_7C858ZNPMwTkE1xJN0pJ3");	
+}
 
-$.ajax({
-  url: "listings.txt",
-  success: function(data){
-    var obj = JSON.parse(data);
-	
+function AddListings() {
+	$.ajax({
+	  url: "listings.txt",
+	  success: function(data){		  
+		var obj = JSON.parse(data);
+		AddReturnedListingInfo(obj);
+	  }
+	});
+}
+
+function AddReturnedListingInfo(obj){
 	var i = 1;
 	var currentGroupNumber = 0;
 	var currentGroupId = "";
 	var first = "";
-	
-
 	
 	obj.listings.forEach(function(item) {
 		if((i%4 == 0) || i == 1)
@@ -51,58 +61,38 @@ $.ajax({
 
 		i = i + 1;
 	});
-  }
-});
+}
 
-var pageAccessToken = 'EAAHo25kMqRYBABR4oSlxi7eNPN0PfJd7FpyiBykGLt8I81bfdq9P0wTF8ziK2O3BzIpkF6yPBr3WfctUd5TrL4m6m0EjLZCZBREaNa4GqdLyvwSGUPj79katJZBWZAMD2XuBBIDZBZB01ra9OjIwUIbRu1rRKwPZCEeoxwVNAVGZCQZDZD';
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId            : '537504839936278',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.11'
-    });
+function AddReviews() {
+	var pageAccessToken = 'EAAHo25kMqRYBABR4oSlxi7eNPN0PfJd7FpyiBykGLt8I81bfdq9P0wTF8ziK2O3BzIpkF6yPBr3WfctUd5TrL4m6m0EjLZCZBREaNa4GqdLyvwSGUPj79katJZBWZAMD2XuBBIDZBZB01ra9OjIwUIbRu1rRKwPZCEeoxwVNAVGZCQZDZD';
+	var myAppId = '537504839936278';
+	var realtorsSite = "/RealtorShelliBell/ratings";
+	
+	
+	window.fbAsyncInit = function() {
+	FB.init({
+		appId            : myAppId,
+		autoLogAppEvents : true,
+		xfbml            : true,
+		version          : 'v2.11'
+	});
 	
 	
 	FB.api(
-    "/RealtorShelliBell/ratings",
-	{
-	  access_token : pageAccessToken
-	},
-    function (response) {
-      if (response && !response.error) {
-		var i = 1;
-		var first = "";
-        response.data.forEach(function(item){
-			
-			var commentText = "";
-			if(item.review_text)
-			{
-				commentText = item.review_text;
-				if(commentText.length > 175)
-				{
-					commentText = commentText.substr(0,175) + "[&hellip;]";
-				}
-			}			
-			
-			if((i%4 == 0) || i == 1)
-			{
-				first = 'first';
-			}
-			else
-			{
-				first = '';
-			}
-			
-			$("#reviewsList").append('<li class="one_third '+ first +'"> <article> <a href="https://www.facebook.com/pg/RealtorShelliBell/reviews/?ref=page_internal"><i class="icon btmspace-30 fa fa-facebook-square"></i></a><h6 class="heading">' + item.reviewer.name + '</h6><p>' + commentText + '</p> <footer>' + GetRatingIcons(item.rating) + '</footer> </article> </li>');
-			
-			i = i + 1;
+		realtorsSite,
+		{
+		  access_token : pageAccessToken
+		},
+		function (response) {
+		  if (response && !response.error) {
+			var iterator = 1;
+			response.data.forEach(function(item){				
+				AddReviewItem(item, iterator);	
+				iterator = iterator + 1;
+			});
+		  }
 		});
-      }
-    }
-);
-  };
+	};
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -112,6 +102,40 @@ var pageAccessToken = 'EAAHo25kMqRYBABR4oSlxi7eNPN0PfJd7FpyiBykGLt8I81bfdq9P0wTF
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    
+}
+
+function AddReviewItem(item, iterator){
+	var commentText = "";
+	var maxLengthForReviews = 175;
+	
+	
+	if(item.review_text)
+	{
+		commentText = item.review_text;
+		if(commentText.length > maxLengthForReviews)
+		{
+			commentText = commentText.substr(0,maxLengthForReviews) + "[&hellip;]";
+		}
+	}	
+
+	var first = CheckIsFirst(iterator); 
+	
+	$("#reviewsList").append('<li class="one_third '+ first +'"> <article> <a href="https://www.facebook.com/pg/RealtorShelliBell/reviews/?ref=page_internal"><i class="icon btmspace-30 fa fa-facebook-square"></i></a><h6 class="heading">' + item.reviewer.name + '</h6><p>' + commentText + '</p> <footer>' + GetRatingIcons(item.rating) + '</footer> </article> </li>');
+	
+}
+
+function CheckIsFirst(iterator){
+	
+	if((iterator%4 == 0) || iterator == 1)
+	{
+		return 'first';
+	}
+	else
+	{
+		return '';
+	}
+}
+
 function GetRatingIcons(rating){
 	var numberOfStars = Number(rating);
 	var returnString = "<a>Rating: ";
@@ -129,7 +153,15 @@ function SendEmail() {
 	var email = $("#email").val();
 	var content = $("#comment").val();
 	
-	emailjs.send("gmail", "shelli_bell_contact_email", {from_name: name, message_html: content, reply_to: email});
+	//emailjs.send("gmail", "shelli_bell_contact_email", {from_name: name, message_html: content, reply_to: email});
+	
+	$('#emailSubmit').css('display','block');
+	
+	$('#emailModalClose').click(function(){
+		$('#emailSubmit').css('display','none');
+	});
+	
+	
 }
 
 function ResetForm(){
